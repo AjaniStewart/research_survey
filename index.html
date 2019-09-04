@@ -1,29 +1,65 @@
-<!DOCTYPE html>
-<html>
-    <meta charset="utf-8">
-    <head>
-    </head>
-    <body>
-        <div id="root"></div>
-    </body>
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-router/5.0.1/react-router.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel">
-    const Greeting = (props) => {
-        return (<p>Hello, World</p>);
-    }
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-router/5.0.1/react-router.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    class Greeting2 extends React.Component {
-        render() {
-            return (<p>Hello, Booby</p>);
-        }
-    }
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
 
-    ReactDOM.render(
-        <Greeting2 />,
-        document.getElementById('root')
-    )
-    </script>
-</html>
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<div id="root"></div>
+
+<script type="text/babel">
+
+// TODO: have a default array of questions (as HTML tables)
+// randomize the tables (somehow)
+// add a next button and react router to implement pagination
+// ???
+// profit
+
+const Question = (props) => {
+  return (
+    <input type="radio" name="test!" value="test"/>
+  );
+}
+
+
+const Survey = (props) => {
+  return (
+    <crowd-form answer-format="flatten-objects">
+
+      <crowd-instructions link-text="View instructions" link-type="button">
+      <short-summary>
+        <p>Provide a brief instruction here</p>
+      </short-summary>
+
+      <detailed-instructions>
+        <h3>Provide more detailed instructions here</h3>
+        <p>Include additional information</p>
+      </detailed-instructions>
+
+      <positive-example>
+        <p>Provide an example of a good answer here</p>
+        <p>Explain why it's a good answer</p>
+      </positive-example>
+
+      <negative-example>
+        <p>Provide an example of a bad answer here</p>
+        <p>Explain why it's a bad answer</p>
+      </negative-example>
+
+      </crowd-instructions>
+
+      {props.children}
+
+    </crowd-form>
+  );
+}
+
+ReactDOM.render(
+  <Survey><Question /></Survey>,
+  document.getElementById('root')
+);
+</script>
