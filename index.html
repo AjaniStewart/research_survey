@@ -20,63 +20,86 @@
 // ???
 // profit
 
-const Router = window.ReactRouterDOM.BrowserRouter;
+const Router = window.ReactRouterDOM.HashRouter;
 const Route =  window.ReactRouterDOM.Route;
 const Link =  window.ReactRouterDOM.Link;
+const Switch = window.ReactRouterDOM.Switch;
 
 const Question = (props) => {
   console.log("1,2,3")
   return (
-    <input type="radio" name="test!" value="test"/>
+    <div>
+      <input type="radio" name="test!" value="test"/>
+      <Link to="/">Hi</Link>
+      <Link to="/2">2</Link>
+    </div>
   );
 }
 
 const Question2 = (props) => {
   console.log("3,2,1")
   return (
-    <input type="radio" name="test2" value="test2"/>
+    <div>
+      <input type="radio" name="test2" value="test2"/>
+      <Link to="/">Hi</Link>
+      <Link to="/1">1</Link>
+    </div>
+  );
+}
+
+const Landing = props => {
+  return (
+    <div>
+      <p>Hi</p>
+      <Link to="/1">1</Link>
+      <Link to="/2">2</Link>
+    </div>
+  );
+}
+
+const AmazonCrowdComponents = props => {
+  return (
+    <crowd-form answer-format="flatten-objects">
+      <crowd-instructions link-text="View instructions" link-type="button">
+      <short-summary>
+        <p>Provide a brief instruction here</p>
+      </short-summary>
+
+      <detailed-instructions>
+        <h3>Provide more detailed instructions here</h3>
+        <p>Include additional information</p>
+      </detailed-instructions>
+
+      <positive-example>
+        <p>Provide an example of a good answer here</p>
+        <p>Explain why it's a good answer</p>
+      </positive-example>
+
+      <negative-example>
+        <p>Provide an example of a bad answer here</p>
+        <p>Explain why it's a bad answer</p>
+      </negative-example>
+      </crowd-instructions>
+      { props.children }
+    </crowd-form>
   );
 }
 
 
 const Survey = (props) => {
   return (
-    <Router>
-      <crowd-form answer-format="flatten-objects">
-
-        <crowd-instructions link-text="View instructions" link-type="button">
-        <short-summary>
-          <p>Provide a brief instruction here</p>
-        </short-summary>
-
-        <detailed-instructions>
-          <h3>Provide more detailed instructions here</h3>
-          <p>Include additional information</p>
-        </detailed-instructions>
-
-        <positive-example>
-          <p>Provide an example of a good answer here</p>
-          <p>Explain why it's a good answer</p>
-        </positive-example>
-
-        <negative-example>
-          <p>Provide an example of a bad answer here</p>
-          <p>Explain why it's a bad answer</p>
-        </negative-example>
-
-        </crowd-instructions>
-
-        <Link to="/1">1</Link>
-        <Link to="/2">2</Link>
-      </crowd-form>
-      <Route path="/1" component={Question}/>
-      <Route path="/2" component={Question2}/>
-    </Router>
+      <AmazonCrowdComponents>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/1" component={Question} />
+          <Route exact path="/2" component={Question2} />
+      </AmazonCrowdComponents>
   );
 }
 
 ReactDOM.render(
-  <Survey></Survey>,
+  <Router>
+    <Survey/>
+  </Router>,
   document.getElementById('root')
 );
 </script>
