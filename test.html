@@ -4,52 +4,25 @@
         <meta charset="utf-8">
         <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-        <script crossorigin src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
-        <script crossorigin src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     </head>
     <body>
         <div id="root"></div>
     </body>
     <script type="text/babel">
-    const Router = window.ReactRouterDOM.HashRouter;
-    const Route =  window.ReactRouterDOM.Route;
-    const Link =  window.ReactRouterDOM.Link;
     
-    const Hi = () => {
-      return (
-        <div>
-          <p>Hi</p>
-          <Link to="/bye">Bye</Link>
-        </div>
-      );
-    }
-
-    const Bye = () => {
-      return (
-        <div>
-          <p>Bye</p>
-          <Link to="/hi">Hi</Link>
-        </div>
-      );
-    }
 
     const App = () => {
       return (
         <div>
-            <Route exact path="/" component={Hi} />
-            <Route exact path="/hi" component={Hi} />
-            <Route exact path="/bye" component={Bye} />
         </div>
       );
     }
 
     ReactDOM.render(
-      <Router>
-        <App />
-      </Router>,
+      <App />,
       document.getElementById("root")
-    )
+    );
         
     </script>
 </html>

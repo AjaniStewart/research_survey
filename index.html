@@ -20,21 +20,23 @@
 // ???
 // profit
 
-const Router = window.ReactRouterDOM.HashRouter;
-const Route =  window.ReactRouterDOM.Route;
-const Link =  window.ReactRouterDOM.Link;
-const Switch = window.ReactRouterDOM.Switch;
-
 const Question = (props) => {
-  console.log("1,2,3")
+  const [display, setDisplay] = React.useState("none");
+
+  // React.useEffect(() => {
+
+  // })
   return (
     <div>
-      <input type="radio" name="test!" value="test"/>
-      <Link to="/">Hi</Link>
-      <Link to="/2">2</Link>
+      <input style={{display}} type="radio" />
+      <button onClick={() => display === "none" ? setDisplay("block") : setDisplay("none")} />
     </div>
   );
+
 }
+
+
+
 
 const Question2 = (props) => {
   console.log("3,2,1")
@@ -97,9 +99,7 @@ const Survey = (props) => {
 }
 
 ReactDOM.render(
-  <Router>
-    <Survey/>
-  </Router>,
+  <Question />,
   document.getElementById('root')
 );
 
