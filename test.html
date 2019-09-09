@@ -13,10 +13,13 @@
     
 
     const App = () => {
-      return (
-        <div>
-        </div>
-      );
+        const [display, setDisplay] = React.useState("block");
+        return (
+          <div>
+            <input style={{display}} type="radio" />
+            <button onClick={() => display === "none" ? setDisplay("block") : setDisplay("none")}>Toggle Show</button>
+          </div>
+          );
     }
 
     ReactDOM.render(

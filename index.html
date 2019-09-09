@@ -2,8 +2,6 @@
 <script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <!-- For the full list of available Crowd HTML Elements and their input/output documentation,
@@ -20,44 +18,31 @@
 // ???
 // profit
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+
+
 const Question = (props) => {
   const [display, setDisplay] = React.useState("none");
-
-  // React.useEffect(() => {
-
-  // })
+  React.useEffect(() => {
+    if (props.current === props.id) {
+      setDisplay("block");
+    }
+  });
   return (
-    <div>
-      <input style={{display}} type="radio" />
-      <button onClick={() => display === "none" ? setDisplay("block") : setDisplay("none")} />
-    </div>
-  );
-
-}
-
-
-
-
-const Question2 = (props) => {
-  console.log("3,2,1")
-  return (
-    <div>
-      <input type="radio" name="test2" value="test2"/>
-      <Link to="/">Hi</Link>
-      <Link to="/1">1</Link>
+    <div id={props.id} style={{display}}>
+      
     </div>
   );
 }
 
-const Landing = props => {
-  return (
-    <div>
-      <p>Hi</p>
-      <Link to="/1">1</Link>
-      <Link to="/2">2</Link>
-    </div>
-  );
-}
+
+
 
 const AmazonCrowdComponents = props => {
   return (
@@ -89,11 +74,13 @@ const AmazonCrowdComponents = props => {
 
 
 const Survey = (props) => {
+  const [current, setCurrent] = React.useState();
+  const orderArray = [1,2,3,4,5,6,7];
+  shuffleArray(orderArray)
+  
   return (
       <AmazonCrowdComponents>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/1" component={Question} />
-          <Route exact path="/2" component={Question2} />
+        
       </AmazonCrowdComponents>
   );
 }
