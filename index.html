@@ -19,7 +19,7 @@
 // add a next button and react router to implement pagination
 // ???
 // profit
-
+let submitButton;
 
 //from stack overflow
 function shuffleArray(array) {
@@ -98,20 +98,17 @@ const Questions = () => {
   );
 }
 
-let submitButton = document.getElementsByTagName("awsui-button");
-// while(submitButton.length === 0) {
-//   submitButton = document.getElementsByTagName("awsui-button");
-// }
-console.log(submitButton)
+
 const PromptsAndQuestions = (props) => {
-  const [display, setDisplay] = React.useState("none");
+  const [display, setDisplay] = React.useState("block");
   React.useEffect(() => {
+    console.log("CURRENT", props.current)
     if (props.current === props.id) {
       setDisplay("block");
     } else {
       setDisplay("none");
     }
-  });
+  },[props.current]);
   return (
     <div id={props.id} style={{display}} className="question-group">
       <div className="image">
@@ -128,6 +125,7 @@ const PromptsAndQuestions = (props) => {
       <div className="questions">
         <Questions />
       </div>
+      <button onClick={() => {console.log("ID", props.id); props.next()}}>Next</button>
     </div>
   );
 }
@@ -163,23 +161,53 @@ const AmazonCrowdComponents = props => {
   );
 }
 
+  const orderArray = [1,2,3,4];
+  shuffleArray(orderArray)
 
 const Survey = (props) => {
-  const [current, setCurrent] = React.useState();
-  const orderArray = [1,2,3,4,5,6,7];
-  shuffleArray(orderArray)
+  const [current, setCurrent] = React.useState(orderArray.pop());
   
   return (
       <AmazonCrowdComponents>
-        
+        <PromptsAndQuestions 
+          next={() => {console.log("Popping 1"); setCurrent(orderArray.pop())}}
+          current={current}
+          imageUrl="/Users/ajanistewart/gh/survey/assets/example.png"
+          id={1}
+          robotAction="FIRST"
+          robotResponse="FIRST"
+        />
+        <PromptsAndQuestions 
+          next={() => {console.log("Popping 2"); setCurrent(orderArray.pop())}}
+          current={current}
+          imageUrl="/Users/ajanistewart/gh/survey/assets/example.png"
+          id={2}
+          robotAction="SECOND"
+          robotResponse="SECOND"
+        />
+        <PromptsAndQuestions 
+          next={() => {console.log("Popping 3"); setCurrent(orderArray.pop())}}
+          current={current}
+          imageUrl="/Users/ajanistewart/gh/survey/assets/example.png"
+          id={3}
+          robotAction="THIRD"
+          robotResponse="THIRD"
+        />
+        <PromptsAndQuestions 
+          next={() => {console.log("Popping 4"); setCurrent(orderArray.pop())}}
+          current={current}
+          imageUrl="/Users/ajanistewart/gh/survey/assets/example.png"
+          id={4}
+          robotAction="FOURTH"
+          robotResponse="FOURTH"
+        />
       </AmazonCrowdComponents>
   );
 }
 
 ReactDOM.render(
-  <Questions />,
+  <Survey />,
   document.getElementById('root')
 );
 
-console.log(document.getElementById('root').children)
 </script>
