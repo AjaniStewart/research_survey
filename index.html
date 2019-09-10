@@ -1,3 +1,5 @@
+<meta charset="utf-8"/>
+
 <!-- You must include this JavaScript file -->
 <script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
@@ -18,6 +20,8 @@
 // ???
 // profit
 
+
+//from stack overflow
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -25,18 +29,105 @@ function shuffleArray(array) {
     }
 }
 
+const Questions = () => {
+  const questionBank = [
+  <tr>
+    <td className="question">How redundant was the response?</td>
+    <td><input type="radio" name="question1" value="1"/><figcaption>Extremely redundant</figcaption></td>
+    <td><input type="radio" name="question1" value="2"/><figcaption>Considerably redundant</figcaption></td>
+    <td><input type="radio" name="question1" value="3"/><figcaption>Fairly redundant</figcaption></td>
+    <td><input type="radio" name="question1" value="4"/><figcaption>Slightly redundant</figcaption></td>
+    <td><input type="radio" name="question1" value="5"/><figcaption>Not at all redundant</figcaption></td>
+  </tr>,
+  <tr>
+    <td className="question">How long was the response?</td>
+    <td><input type="radio" name="question2" value="1"/><figcaption>Extremely long</figcaption></td>
+    <td><input type="radio" name="question2" value="2"/><figcaption>Considerably long</figcaption></td>
+    <td><input type="radio" name="question2" value="3"/><figcaption>Fairly long</figcaption></td>
+    <td><input type="radio" name="question2" value="4"/><figcaption>Slightly long</figcaption></td>
+    <td><input type="radio" name="question2" value="5"/><figcaption>Not at all long</figcaption></td>
+  </tr>,
+  <tr>
+    <td className="question">How complex was the response?</td>
+    <td><input type="radio" name="question3" value="1"/><figcaption>Extremely technical</figcaption></td>
+    <td><input type="radio" name="question3" value="2"/><figcaption>Considerably technical</figcaption></td>
+    <td><input type="radio" name="question3" value="3"/><figcaption>Fairly technical</figcaption></td>
+    <td><input type="radio" name="question3" value="4"/><figcaption>Slighty technical</figcaption></td>
+    <td><input type="radio" name="question3" value="5"/><figcaption>Not at all technical</figcaption></td>
+  </tr>,
+  <tr>
+    <td className="question">How well did you understand the reponse?</td>
+    <td><input type="radio" name="question4" value="1"/><figcaption>Understood a lot</figcaption></td>
+    <td><input type="radio" name="question4" value="2"/><figcaption>Understood a moderate amount</figcaption></td>
+    <td><input type="radio" name="question4" value="3"/><figcaption>Understood Somewhat</figcaption></td>
+    <td><input type="radio" name="question4" value="4"/><figcaption>Understood a little bit</figcaption></td>
+    <td><input type="radio" name="question4" value="5"/><figcaption>Understood nothing at all</figcaption></td>
+  </tr>,
+  <tr>
+    <td className="question">How natural was the robot's language?</td>
+    <td><input type="radio" name="question5" value="1"/><figcaption>Extremely natural</figcaption></td>
+    <td><input type="radio" name="question5" value="2"/><figcaption>Considerably natural</figcaption></td>
+    <td><input type="radio" name="question5" value="3"/><figcaption>Fairly natural</figcaption></td>
+    <td><input type="radio" name="question5" value="4"/><figcaption>Slightly natural</figcaption></td>
+    <td><input type="radio" name="question5" value="5"/><figcaption>Not at all natural</figcaption></td>
+  </tr>,
+  <tr>
+    <td className="question">How much do you agree with the robot's decision?</td>
+    <td><input type="radio" name="question6" value="1"/><figcaption>A lot</figcaption></td>
+    <td><input type="radio" name="question6" value="2"/><figcaption>A moderate amount</figcaption></td>
+    <td><input type="radio" name="question6" value="3"/><figcaption>Somewhat</figcaption></td>
+    <td><input type="radio" name="question6" value="4"/><figcaption>A little bit</figcaption></td>
+    <td><input type="radio" name="question6" value="5"/><figcaption>Not at all</figcaption></td>
+  </tr>,
+  <tr>
+    <td className="question">How much do you agree with the robots's beliefs?</td>
+    <td><input type="radio" name="question7" value="1"/><figcaption>A lot</figcaption></td>
+    <td><input type="radio" name="question7" value="2"/><figcaption>A moderate amount</figcaption></td>
+    <td><input type="radio" name="question7" value="3"/><figcaption>Somewhat</figcaption></td>
+    <td><input type="radio" name="question7" value="4"/><figcaption>A little bit</figcaption></td>
+    <td><input type="radio" name="question7" value="5"/><figcaption>Not at all</figcaption></td>
+  </tr>
+  ];
+  shuffleArray(questionBank);
+  return (
+    <table className="question-table">
+      <tbody>
+        {questionBank}
+      </tbody>
+    </table>
+  );
+}
 
-
-const Question = (props) => {
+let submitButton = document.getElementsByTagName("awsui-button");
+// while(submitButton.length === 0) {
+//   submitButton = document.getElementsByTagName("awsui-button");
+// }
+console.log(submitButton)
+const PromptsAndQuestions = (props) => {
   const [display, setDisplay] = React.useState("none");
   React.useEffect(() => {
     if (props.current === props.id) {
       setDisplay("block");
+    } else {
+      setDisplay("none");
     }
   });
   return (
-    <div id={props.id} style={{display}}>
-      
+    <div id={props.id} style={{display}} className="question-group">
+      <div className="image">
+        <img src={props.imageUrl} alt="Robot Context Image" />
+      </div>
+      <div className="prompt">
+        <h2>
+          This is a floor plan of a building. You and your robot are traveling there to your specified goal (the star). 
+          The robot is standing on the square and facing in the direction of the arrow.
+          At this point, the robot does <em>{props.robotAction}</em>. 
+          You ask the robot, "Why did you do that?", and it responds, <em>"{props.robotResponse}"</em>
+        </h2>
+      </div>
+      <div className="questions">
+        <Questions />
+      </div>
     </div>
   );
 }
@@ -86,7 +177,7 @@ const Survey = (props) => {
 }
 
 ReactDOM.render(
-  <Question />,
+  <Questions />,
   document.getElementById('root')
 );
 

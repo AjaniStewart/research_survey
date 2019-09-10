@@ -11,19 +11,111 @@
     </body>
     <script type="text/babel">
     
+      //from stack overflow
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
+    // const App = () => {
+    //     const [display, setDisplay] = React.useState("block");
+    //     return (
+    //       <div>
+    //         <input style={{display}} type="radio" />
+    //         <button onClick={() => display === "none" ? setDisplay("block") : setDisplay("none")}>Toggle Show</button>
+    //       </div>
+    //       );
+    // }
     const App = () => {
-        const [display, setDisplay] = React.useState("block");
-        return (
-          <div>
-            <input style={{display}} type="radio" />
-            <button onClick={() => display === "none" ? setDisplay("block") : setDisplay("none")}>Toggle Show</button>
-          </div>
-          );
+      const b = [
+      <tr>
+            <td class="question">How redundant was the response?</td>
+            <td><input type="radio" name="question1" value="1"/><figcaption>Extremely redundant</figcaption></td>
+            <td><input type="radio" name="question1" value="2"/><figcaption>Considerably redundant</figcaption></td>
+            <td><input type="radio" name="question1" value="3"/><figcaption>Fairly redundant</figcaption></td>
+            <td><input type="radio" name="question1" value="4"/><figcaption>Slightly redundant</figcaption></td>
+            <td><input type="radio" name="question1" value="5"/><figcaption>Not at all redundant</figcaption></td>
+          </tr>
+      ]
+      console.log(b)
+      return (
+        <p>hi</p>
+      )
     }
 
+    const Questions = () => {
+  const questionBank = [
+  <tr>
+    <td class="question">How redundant was the response?</td>
+    <td><input type="radio" name="question1" value="1"/><figcaption>Extremely redundant</figcaption></td>
+    <td><input type="radio" name="question1" value="2"/><figcaption>Considerably redundant</figcaption></td>
+    <td><input type="radio" name="question1" value="3"/><figcaption>Fairly redundant</figcaption></td>
+    <td><input type="radio" name="question1" value="4"/><figcaption>Slightly redundant</figcaption></td>
+    <td><input type="radio" name="question1" value="5"/><figcaption>Not at all redundant</figcaption></td>
+  </tr>,
+  <tr>
+    <td class="question">How long was the response?</td>
+    <td><input type="radio" name="question2" value="1"/><figcaption>Extremely long</figcaption></td>
+    <td><input type="radio" name="question2" value="2"/><figcaption>Considerably long</figcaption></td>
+    <td><input type="radio" name="question2" value="3"/><figcaption>Fairly long</figcaption></td>
+    <td><input type="radio" name="question2" value="4"/><figcaption>Slightly long</figcaption></td>
+    <td><input type="radio" name="question2" value="5"/><figcaption>Not at all long</figcaption></td>
+  </tr>,
+  <tr>
+    <td class="question">How complex was the response?</td>
+    <td><input type="radio" name="question3" value="1"/><figcaption>Extremely technical</figcaption></td>
+    <td><input type="radio" name="question3" value="2"/><figcaption>Considerably technical</figcaption></td>
+    <td><input type="radio" name="question3" value="3"/><figcaption>Fairly technical</figcaption></td>
+    <td><input type="radio" name="question3" value="4"/><figcaption>Slighty technical</figcaption></td>
+    <td><input type="radio" name="question3" value="5"/><figcaption>Not at all technical</figcaption></td>
+  </tr>,
+  <tr>
+    <td class="question">How well did you understand the reponse?</td>
+    <td><input type="radio" name="question4" value="1"/><figcaption>Understood a lot</figcaption></td>
+    <td><input type="radio" name="question4" value="2"/><figcaption>Understood a moderate amount</figcaption></td>
+    <td><input type="radio" name="question4" value="3"/><figcaption>Understood Somewhat</figcaption></td>
+    <td><input type="radio" name="question4" value="4"/><figcaption>Understood a little bit</figcaption></td>
+    <td><input type="radio" name="question4" value="5"/><figcaption>Understood nothing at all</figcaption></td>
+  </tr>,
+  <tr>
+    <td class="question">How natural was the robot's language?</td>
+    <td><input type="radio" name="question5" value="1"/><figcaption>Extremely natural</figcaption></td>
+    <td><input type="radio" name="question5" value="2"/><figcaption>Considerably natural</figcaption></td>
+    <td><input type="radio" name="question5" value="3"/><figcaption>Fairly natural</figcaption></td>
+    <td><input type="radio" name="question5" value="4"/><figcaption>Slightly natural</figcaption></td>
+    <td><input type="radio" name="question5" value="5"/><figcaption>Not at all natural</figcaption></td>
+  </tr>,
+  <tr>
+    <td class="question">How much do you agree with the robot's decision?</td>
+    <td><input type="radio" name="question6" value="1"/><figcaption>A lot</figcaption></td>
+    <td><input type="radio" name="question6" value="2"/><figcaption>A moderate amount</figcaption></td>
+    <td><input type="radio" name="question6" value="3"/><figcaption>Somewhat</figcaption></td>
+    <td><input type="radio" name="question6" value="4"/><figcaption>A little bit</figcaption></td>
+    <td><input type="radio" name="question6" value="5"/><figcaption>Not at all</figcaption></td>
+  </tr>,
+  <tr>
+    <td class="question">How much do you agree with the robots's beliefs?</td>
+    <td><input type="radio" name="question7" value="1"/><figcaption>A lot</figcaption></td>
+    <td><input type="radio" name="question7" value="2"/><figcaption>A moderate amount</figcaption></td>
+    <td><input type="radio" name="question7" value="3"/><figcaption>Somewhat</figcaption></td>
+    <td><input type="radio" name="question7" value="4"/><figcaption>A little bit</figcaption></td>
+    <td><input type="radio" name="question7" value="5"/><figcaption>Not at all</figcaption></td>
+  </tr>
+  ];
+  shuffleArray(questionBank);
+  return (
+    <table className="question-table">
+      {questionBank.map(tr => {
+        return tr;
+      })}
+    </table>
+  );
+}
+
     ReactDOM.render(
-      <App />,
+      <Questions />,
       document.getElementById("root")
     );
         
