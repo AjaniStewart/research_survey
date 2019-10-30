@@ -19,7 +19,6 @@
 // add a next button and react router to implement pagination
 // ???
 // profit
-let submitButton;
 
 //from stack overflow
 function shuffleArray(array) {
@@ -161,7 +160,14 @@ const AmazonCrowdComponents = props => {
   );
 }
 
-  const orderArray = [1,2,3,4];
+  const orderArray = [1,2,3,4,5];
+  const promptsAndPics = {
+    1: {imgUrl: "/Users/ajanistewart/gh/survey/assets/example.png", robotAction: "FIRST", robotResponse: "FIRST"},
+    2: {imgUrl: "/Users/ajanistewart/gh/survey/assets/example.png", robotAction: "SECOND", robotResponse: "SECOND"},
+    3: {imgUrl: "/Users/ajanistewart/gh/survey/assets/example.png", robotAction: "THIRD", robotResponse: "THIRD"},
+    4: {imgUrl: "/Users/ajanistewart/gh/survey/assets/example.png", robotAction: "FOURTH", robotResponse: "FOURTH"},
+    5: {imgUrl: "/Users/ajanistewart/gh/survey/assets/example.png", robotAction: "FIFTH", robotResponse: "FIFTH"}
+  }
   shuffleArray(orderArray)
 
 const Survey = (props) => {
@@ -169,38 +175,17 @@ const Survey = (props) => {
   
   return (
       <AmazonCrowdComponents>
-        <PromptsAndQuestions 
-          next={() => {console.log("Popping 1"); setCurrent(orderArray.pop())}}
-          current={current}
-          imageUrl="/Users/ajanistewart/gh/survey/assets/example.png"
-          id={1}
-          robotAction="FIRST"
-          robotResponse="FIRST"
-        />
-        <PromptsAndQuestions 
-          next={() => {console.log("Popping 2"); setCurrent(orderArray.pop())}}
-          current={current}
-          imageUrl="/Users/ajanistewart/gh/survey/assets/example.png"
-          id={2}
-          robotAction="SECOND"
-          robotResponse="SECOND"
-        />
-        <PromptsAndQuestions 
-          next={() => {console.log("Popping 3"); setCurrent(orderArray.pop())}}
-          current={current}
-          imageUrl="/Users/ajanistewart/gh/survey/assets/example.png"
-          id={3}
-          robotAction="THIRD"
-          robotResponse="THIRD"
-        />
-        <PromptsAndQuestions 
-          next={() => {console.log("Popping 4"); setCurrent(orderArray.pop())}}
-          current={current}
-          imageUrl="/Users/ajanistewart/gh/survey/assets/example.png"
-          id={4}
-          robotAction="FOURTH"
-          robotResponse="FOURTH"
-        />
+        {orderArray.map(index => {
+          return <PromptsAndQuestions
+              key={index}
+              next={() => {console.log(`Popping ${index}`); setCurrent(orderArray.pop())}}
+              current={current}
+              imageUrl={promptsAndPics[index].imageUrl}
+              id={index}
+              robotAction={promptsAndPics[index].robotAction}
+              robotResponse={promptsAndPics[index].robotResponse}
+              />
+        })}
       </AmazonCrowdComponents>
   );
 }
